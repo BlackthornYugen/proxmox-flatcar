@@ -99,10 +99,10 @@ case "$(pvesh get /storage/${TEMPLATE_VMSTORAGE} --noborder --noheader | grep ^t
 esac
 
 # download flatcar qemu vdisk image
-if [[ ! -f ${FCAR_IMAGE} ]] ;then
+if [[ ! -f "${FCAR_IMAGE?}" ]] ;then
     echo "Download flatcar qemu vdisk image..."
-    wget --show-progress --no-check-certificate ${FCAR_IMAGE_URL} #REVIEW pass --no-check-certificate because of Let's Encrypt ROOT CA Cert changed on 2021 Q4
-    bzip2 --decompress --quiet ${FCAR_ARCHIVE}
+    wget --show-progress "${FCAR_IMAGE_URL?}"
+    bzip2 --decompress --quiet "${FCAR_ARCHIVE?}"
 fi
 
 # create a new VM
